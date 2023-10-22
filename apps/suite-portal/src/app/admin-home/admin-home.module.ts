@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminHomeComponent } from './admin-home.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
+  declarations: [AdminHomeComponent],
+  exports: [AdminHomeComponent],
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule,
-    FormsModule,
     HttpClientModule
-  ],
-  declarations: [HomeComponent],
-  exports: [HomeComponent]
+  ]
 })
-export class HomeModule { }
+export class AdminHomeModule { }

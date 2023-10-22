@@ -31,17 +31,52 @@ export class MaintenanceRequestDao {
 
   async insertNewRequest(maintenanceRequest: MaintenanceRequest) {
     const id = { id: nanoid.nanoid(10) };
+
+    //by default every successfully submitted request should be open
+
     await this.collection
       .push({
         ...id,
         ...maintenanceRequest,
-        submittedAt: new Date(),
+        isOpen: true,
+        submittedAt: new Date()
       })
       .write()
     return id;
   }
 
   async getMaintenanceRequest(id: string): Promise<MaintenanceRequestDB> {
-    return await this.collection.find({ id }).value();
+    const mainReq = await this.collection.find({ id }).value();
+    if (!id) {
+        throw new Error('No id provided');
+      }
+
+    if (!mainReq) {
+      throw new Error('No relevant record in collection.')
+    }
+
+    return mainReq
+  }
+
+  async getAllOpenMaintenanceRequest(): Promise<MaintenanceRequestDB[]>{
+    return await this.collection.filter(req => req.isOpen === true).value()
+  }
+
+  async closeMaintenanceRequest (id: string) {
+    if (!id) {
+      throw new Error('No id provided');
+    }
+
+    const mainReq = await this.collection.find({ id }).value();
+
+    if (!mainReq) {
+      throw new Error('Cannot close record that does not exist in collection.')
+    }
+
+    await this.collection.find({ id }).assign({isOpen: false}).write()
+
+    const list = await this.collection.filter(req => req.isOpen === true).value()
+
+    return {data: list}
   }
 }

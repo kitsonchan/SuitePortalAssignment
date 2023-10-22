@@ -1,0 +1,13 @@
+form.maint-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-center {
+    justify-content: center;
+}
+
+.message {
+    margin-block-start: 0;
+}

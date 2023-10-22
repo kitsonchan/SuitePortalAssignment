@@ -30,6 +30,7 @@
   "dependencies": {
     "@angular/animations": "^10.1.0",
     "@angular/cdk": "^10.2.7",
+    "@angular/cli": "^10.2.0",
     "@angular/common": "^10.1.0",
     "@angular/compiler": "^10.1.0",
     "@angular/core": "^10.1.0",
@@ -49,7 +50,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.3",
-    "@angular/cli": "^10.2.0",
     "@angular/compiler-cli": "^10.1.0",
     "@angular/language-service": "^10.1.0",
     "@nestjs/schematics": "^7.0.0",

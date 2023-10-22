@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MaintenanceRequest } from '@suiteportal/api-interfaces';
-import { MaintenanceRequestDao, MaintenanceRequestDB } from './maintenance-request.dao';
+import { MaintenanceRequestDao, MaintenanceRequestData, MaintenanceRequestDB } from './maintenance-request.dao';
 
 @Injectable()
 export class MaintenanceRequestService {
@@ -16,6 +16,18 @@ export class MaintenanceRequestService {
   }
 
   async getMaintenanceRequest(id: string): Promise<MaintenanceRequestDB> {
+    if (!id) {
+      throw new Error('No id provided');
+    }
+
     return await this.maintReqDao.getMaintenanceRequest(id);
+  }
+
+  async getAllOpenMaintenanceRequest(): Promise<MaintenanceRequestDB[]> {
+    return await this.maintReqDao.getAllOpenMaintenanceRequest();
+  }
+
+  async closeMaintenanceRequest(id: string) {
+      return await this.maintReqDao.closeMaintenanceRequest(id);
   }
 }

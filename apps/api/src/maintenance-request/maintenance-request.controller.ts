@@ -1,6 +1,7 @@
-import { BadRequestException, Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, Get, Param, Put, UseGuards, HttpException } from '@nestjs/common';
 import { MaintenanceRequest } from '@suiteportal/api-interfaces';
 import { MaintenanceRequestService } from './maintenance-request.service';
+import { AuthGuard } from '../auth.guard';
 
 @Controller('maintenance-requests')
 export class MaintenanceRequestController {
@@ -28,10 +29,37 @@ export class MaintenanceRequestController {
   public async getMaintenanceRequest(
     @Param('id') id: string,
   ) {
-    if (!id) {
-      throw new BadRequestException('No id provided');
+    try {
+      // if (!id) {
+      //   throw new BadRequestException('No id provided');
+      // }
+
+      const response = await this.maintenanceRequestService.getMaintenanceRequest(id);
+      return response
+    } catch (error) {
+      console.log(error)
+      throw new HttpException(error.message, 404);
     }
-    return await this.maintenanceRequestService.getMaintenanceRequest(id);
   }
 
+  ///Protecting the routes only authorized user (admin) can access with auth guards
+
+  @Get('/')
+  @UseGuards(AuthGuard)
+  public async getAllOpenMaintenanceRequest() {
+    return await this.maintenanceRequestService.getAllOpenMaintenanceRequest();
+  }
+
+  @Put('/:id/close')
+  @UseGuards(AuthGuard)
+  public async closeMaintenanceRequest(
+    @Param('id') id: string
+  ) {
+    try {
+      const response = await this.maintenanceRequestService.closeMaintenanceRequest(id);
+      return response
+    } catch (error) {
+      throw new HttpException(error.message, 404);
+    }
+  }
 }
