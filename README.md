@@ -1,5 +1,12 @@
 # SuitePortal
 
+### Admin Login Credentials
+
+Username: admin
+password: Admin1234!
+
+***
+
 This repository is intended to be a starter project for your assignment.
 
 Please review `./Requirements.md` for more detailed instructions about this assignment.
