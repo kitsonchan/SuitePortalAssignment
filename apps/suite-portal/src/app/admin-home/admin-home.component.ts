@@ -40,9 +40,10 @@ export class AdminHomeComponent implements OnInit {
     //`http://localhost:4200/api/maintenance-requests/1/close`
     //`http://localhost:4200/api/maintenance-requests/${id}/close`
     this.http.put(`http://localhost:4200/api/maintenance-requests/${id}/close`, {}, { headers: this.headers }).subscribe({
-      next: (data: { [k: string]: any }) => {
+      next: (data) => {
         //returning list of open maintenance requests to instantly update table data without page refresh
-        this.requestList = data.data
+        this.requestList = data
+        console.log(data)
         this.openSnackBar('Request Closed Succssfully!', 'Confirm')
       },
       error: error => {

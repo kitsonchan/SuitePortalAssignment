@@ -16,10 +16,6 @@ export class MaintenanceRequestService {
   }
 
   async getMaintenanceRequest(id: string): Promise<MaintenanceRequestDB> {
-    if (!id) {
-      throw new Error('No id provided');
-    }
-
     return await this.maintReqDao.getMaintenanceRequest(id);
   }
 
@@ -28,6 +24,6 @@ export class MaintenanceRequestService {
   }
 
   async closeMaintenanceRequest(id: string) {
-      return await this.maintReqDao.closeMaintenanceRequest(id);
+    return await this.maintReqDao.closeMaintenanceRequest(id);
   }
 }
