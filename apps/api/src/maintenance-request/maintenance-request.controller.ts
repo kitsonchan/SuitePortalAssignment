@@ -16,11 +16,20 @@ export class MaintenanceRequestController {
   public async createMaintenanceRequest(
     @Body() maintenanceRequest: MaintenanceRequest,
   ) {
-    if (!maintenanceRequest?.summary) {
-      throw new BadRequestException('Must provide a valid summary');
+    if (!maintenanceRequest?.name) {
+      throw new BadRequestException('Must provide a valid Name');
+    }
+    if (!maintenanceRequest?.email) {
+      throw new BadRequestException('Must provide a valid Email');
+    }
+    if (!maintenanceRequest?.unitNumber) {
+      throw new BadRequestException('Must provide a valid Unit Number');
     }
     if (!maintenanceRequest?.serviceType) {
       throw new BadRequestException('Must provide a valid Service Type');
+    }
+    if (!maintenanceRequest?.summary) {
+      throw new BadRequestException('Must provide a valid Summary');
     }
     return await this.maintenanceRequestService.createMaintenanceRequest(maintenanceRequest);
   }
@@ -59,9 +68,9 @@ export class MaintenanceRequestController {
       throw new BadRequestException('No id provided');
     }
 
-    const request = await this.maintenanceRequestService.getMaintenanceRequest(id)
+    const response = await this.maintenanceRequestService.getMaintenanceRequest(id)
 
-    if (!request) {
+    if (!response) {
       throw new NotFoundException('Cannot close record that does not exist in collection.')
     }
 

@@ -38,16 +38,7 @@ export class HomeComponent implements OnInit {
 
   onSubmit() {
     this.isLoading = true
-    // console.log(this.maintenanceForm.value);
-    // console.log(this.maintenanceForm.valid);
-    this.http.post<PostResponse>('http://localhost:4200/api/maintenance-requests', {
-      name: this.maintenanceForm.value.name,
-      email: this.maintenanceForm.value.email,
-      unitNumber: this.maintenanceForm.value.unitNumber,
-      serviceType: this.maintenanceForm.value.serviceType,
-      summary: this.maintenanceForm.value.summary,
-      details: this.maintenanceForm.value.details,
-    }).subscribe({
+    this.http.post<PostResponse>('http://localhost:4200/api/maintenance-requests', this.maintenanceForm.value).subscribe({
       next: data => {
         this.message = 'Request Created Successfully!'
         this.isLoading = false

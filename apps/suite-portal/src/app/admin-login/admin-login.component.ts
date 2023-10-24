@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'sp-admin-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AdminLoginComponent implements OnInit {
   message: string = ''
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +23,9 @@ export class AdminLoginComponent implements OnInit {
 
   onSubmit() {
     // imitating login API logic
-     
+
     if (this.adminLoginForm.value.username === 'admin' && this.adminLoginForm.value.password === 'Admin1234!') {
+      this.authService.setIsAuthenticated(true)
       this.router.navigateByUrl('/admin/home')
     } else {
       this.message = 'Login Failed.'

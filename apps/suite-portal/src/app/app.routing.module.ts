@@ -6,6 +6,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminLoginModule } from './admin-login/admin-login.module';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminHomeModule } from './admin-home/admin-home.module';
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'admin/home',
-    component: AdminHomeComponent
+    component: AdminHomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
