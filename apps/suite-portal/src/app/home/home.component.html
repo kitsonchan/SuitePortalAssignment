@@ -11,22 +11,22 @@
                 <form *ngIf="!isLoading; else loading" class="maint-form" [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()">
                     <mat-form-field>
                         <mat-label>Apartment Unit #</mat-label>
-                        <input matInput type="text" formControlName="unitNumber" />
+                        <input id="unit_number" matInput type="text" formControlName="unitNumber" />
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Requester Name</mat-label>
-                        <input matInput type="text" formControlName="name" />
+                        <input id="name" matInput type="text" formControlName="name" />
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Requester Email</mat-label>
-                        <input matInput type="email" formControlName="email" />
+                        <input id="email" matInput type="email" formControlName="email" />
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Service Type</mat-label>
-                        <mat-select formControlName="serviceType">
+                        <mat-select id="service_type" formControlName="serviceType">
                             <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType">
                                 {{serviceType}}
                             </mat-option>
@@ -35,12 +35,12 @@
 
                     <mat-form-field>
                         <mat-label>Summary</mat-label>
-                        <input matInput type="text" formControlName="summary" />
+                        <input id="summary" matInput type="text" formControlName="summary" />
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Details</mat-label>
-                        <textarea matInput formControlName="details"></textarea>
+                        <textarea id="details" matInput formControlName="details"></textarea>
                     </mat-form-field>
                     <p *ngIf="message !== ''">{{message}}</p>
                     <button mat-raised-button color="accent" type="submit" [disabled]="!maintenanceForm.valid"> Submit </button>

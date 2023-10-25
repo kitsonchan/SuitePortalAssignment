@@ -27,7 +27,7 @@ export class AdminHomeComponent implements OnInit {
       next: data => {
         this.requestList = data
         this.isLoading = false
-        this.openSnackBar('Request Fetched Succssfully!', 'Dismiss')
+        this.openSnackBar('Request Fetched Successfully!', 'Dismiss')
       },
       error: error => {
         this.isLoading = false
@@ -44,7 +44,7 @@ export class AdminHomeComponent implements OnInit {
         //returning list of open maintenance requests to instantly update table data without page refresh
         this.requestList = data
         console.log(data)
-        this.openSnackBar('Request Closed Succssfully!', 'Confirm')
+        this.openSnackBar('Request Closed Successfully!', 'Confirm')
       },
       error: error => {
         this.openSnackBar(`Error: ${error.error.message}`, 'Confirm')

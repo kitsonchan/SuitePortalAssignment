@@ -11,12 +11,12 @@
                 <form class="maint-form" [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
                     <mat-form-field>
                         <mat-label>Username</mat-label>
-                        <input matInput type="email" formControlName="username" />
+                        <input id="email" matInput type="email" formControlName="username" />
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Password</mat-label>
-                        <input matInput type="password" formControlName="password">
+                        <input id="password" matInput type="password" formControlName="password">
                     </mat-form-field>
                     <p *ngIf="message !== ''" class="message">{{message}}</p>
                     <button type="submit" mat-raised-button color="accent" [disabled]="!adminLoginForm.valid"> Submit </button>

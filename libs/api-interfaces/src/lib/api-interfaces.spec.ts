@@ -1,7 +1,8 @@
-import { apiInterfaces } from './api-interfaces';
+import { ALL_SERVICE_TYPES } from './api-interfaces';
+// import './api-interfaces'
 
 describe('apiInterfaces', () => {
   it('should work', () => {
-    expect(apiInterfaces()).toEqual('api-interfaces');
+    expect(ALL_SERVICE_TYPES.length).toEqual(4);
   });
 });
